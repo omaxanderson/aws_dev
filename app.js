@@ -27,11 +27,11 @@ app.get('/healthz', (req, res, next) => {
     if (healthy) {
         return res.send('OK');
     }
-    return res.send('FAILURE');
+    return res.status(500).send('FAILURE');
 });
 app.post('/unhealthy', (req, res, next) => {
     healthy = false;
-    res.send('OK');
+    res.redirect('/healthz');
 });
 
 // catch 404 and forward to error handler
